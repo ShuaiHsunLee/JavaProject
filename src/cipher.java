@@ -1,45 +1,32 @@
 package MyPackage;
-import java.util.ArrayList;
 
 public class cipher
 {
-	private ArrayList<String> stringList;
-	public String getValue()
-	{
-		String str = "";
-		for (int i=0; i<stringList.size(); i++)
-			str += stringList.get(i) + " ";
-		return str;
-	}
+	private char[] chArray;
+	public cipher() {}
 	public char charShift(char ch, int shift)
 	{
+		shift %= 26;
 		int asci = (int)ch;
-		if (asci>=97 && asci<=122)
+		if (65<=asci && asci<=90)
 		{
 			asci += shift;
-			if (asci > 122)
+			if (asci > 90) 
 				asci -= 26; // asci = 96 + (asci - 122)
+		}
+		else if (97<=asci && asci<=122)
+		{
+			asci += shift;
+			if (asci >122)
+				asci -= 26;
 		}
 		return (char)asci;
 	}
-	public void makeCipher(String str, int shift)
+	public String sentenceShift(String str, int shift)
 	{
-		String[] words = str.split(" ");
-
-		ArrayList<String> lst = new ArrayList<String>();
-		for (int i=0; i<words.length; i++)
-			lst.add(words[i]);
-
-		for (int i=0; i<lst.size(); i++)
-			for (int j=0; j<lst.get(i).length(); j++)
-			{
-				String tmp;
-				char ch = lst.get(i).charAt(j);
-				tmp = lst.get(i).substring(0,j) + charShift(ch, shift);
-				if (j+1 < words[i].length())
-					tmp += lst.get(i).substring(j+1);
-				lst.set(i, tmp);
-			}
-		stringList = lst;
+		chArray = str.toCharArray();
+		for (int i=0; i<chArray.length; i++)
+			chArray[i] = charShift(chArray[i], shift);
+		return String.valueOf(chArray);
 	}
 }

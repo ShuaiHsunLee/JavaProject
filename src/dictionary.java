@@ -12,9 +12,11 @@ public class dictionary extends node
 		{
 			char ch = str.charAt(i);
 			tmp.addChild(ch);
-			tmp = tmp.whichChild(tmp, ch);
+			tmp = tmp.nextChild(tmp, ch);
 		}
-		tmp.modifyStatus();
+		// avoid problem of that same word insert more than once
+		if (tmp.getStatus() == false)
+			tmp.modifyStatus();
 	}
 	public boolean isWord(String str)
 	{
@@ -24,11 +26,17 @@ public class dictionary extends node
 			char ch = str.charAt(i);
 			if (!tmp.existChild(ch))
 				return false;
-			tmp = tmp.whichChild(tmp, ch);
+			// Upper case and lower case are same
+			if (65<=ch && ch<=90)
+				ch += 32;
+			tmp = tmp.nextChild(tmp, ch);
+			if (tmp.getChildren() == null)
+				return false;
 		}
 		return tmp.getStatus();
 	}
 }
+
 class node
 {
 	private char key;
@@ -55,10 +63,17 @@ class node
 	{
 		status = !status;
 	}
+	protected char upperCase(char ch)
+	{
+		if (97<=ch && ch<=122)
+			ch -= 32;
+		return ch;
+	}
 	protected boolean existChild(char ch)
 	{
+		// upper case and lower case are same
 		for (int i=0; i<children.size(); i++)
-			if (children.get(i).key == ch)
+			if (children.get(i).key == ch || upperCase(children.get(i).key) == ch)
 				return true;
 		return false;
 	}
@@ -73,7 +88,7 @@ class node
 			if (!existChild(ch))
 				children.add(new node(ch));
 	}
-	protected node whichChild(node obj, char ch)
+	protected node nextChild(node obj, char ch)
 	{
 		for (int i=0; i<obj.children.size(); i++)
 			if (obj.children.get(i).key == ch)
