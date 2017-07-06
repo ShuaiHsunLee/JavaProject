@@ -3,16 +3,15 @@ import java.util.LinkedList;
 
 public class dictionary extends node
 {
-	private node root;
+	private node root = new node();
 
-	dictionary() { root = new node(); }
+	public dictionary() {}
 
 	public void insertWord(String str)
 	{
 		node tmp = root;
-		for (int i=0; i<str.length(); i++)
+		for (char ch : str.toCharArray())
 		{
-			char ch = str.charAt(i);
 			tmp.addChild(ch);
 			tmp = tmp.nextChild(tmp, ch);
 		}
@@ -24,48 +23,45 @@ public class dictionary extends node
 	public boolean isWord(String str)
 	{
 		node tmp = root;
-		char ch;
-		for (int i=0; i<str.length(); i++)
+		for (char ch : str.toCharArray())
 		{
-			ch = str.charAt(i);
-			// Turn Upper case into lower case 
+			// turn upper case into lower case 
 			if (65<=ch && ch<=90)
 				ch += 32;
-			if (!tmp.existChild(ch))
-				return false;
-			tmp = tmp.nextChild(tmp, ch);
+			// check if every char of a word in dictionary
+			// if there is no child in node, no need to check
 			if (tmp.getChildren() == null)
 				return false;
+			if (!tmp.existTheChild(ch))
+				return false;
+			tmp = tmp.nextChild(tmp, ch);
 		}
 		return tmp.getStatus();
 	}
 }
 
-// efficient usage of memory
+// efficiently saving memory usage
 class node
 {
-	private boolean[] key;
+	private boolean[] key = new boolean[5];
 	private boolean status = false;
 	private LinkedList<node> children = null;
 
 	public node() {}
 	public node(char ch)
 	{
-		key = new boolean[5];
-		// convert alphabet to 5 bit
+		// convert alphabet to 5 bits
 		for (int i=0; i<5; i++)
 			key[i] = ((((int)ch - 97) >> i) & 1) == 1 ? true : false;
 	}
 
 	public boolean[] chToBool(char ch)
 	{
-		boolean[] bit = new boolean[5]; 
+		boolean[] bits = new boolean[5]; 
 		for (int i=0; i<5; i++)
-			bit[i] = ((((int)ch - 97) >> i) & 1) == 1 ? true : false;
-		return bit;
+			bits[i] = ((((int)ch - 97) >> i) & 1) == 1 ? true : false;
+		return bits;
 	}
-
-	protected boolean[] getKey() { return key; }
 
 	protected boolean getStatus() { return status; }
 
@@ -73,15 +69,15 @@ class node
 
 	protected void modifyStatus() { status = !status; }
 
-	private boolean isEqual(boolean[] bit1, boolean[] bit2)
+	private boolean isEqual(boolean[] bits1, boolean[] bits2)
 	{
-		for (int i=0; i<bit1.length; i++)
-			if (bit1[i] != bit2[i])
+		for (int i=0; i<bits1.length; i++)
+			if (bits1[i] != bits2[i])
 				return false;
 		return true;
 	}
 
-	protected boolean existChild(char ch)
+	protected boolean existTheChild(char ch)
 	{
 		boolean[] bits = chToBool(ch);
 		// upper case and lower case are same
@@ -93,14 +89,12 @@ class node
 
 	protected void addChild(char ch)
 	{
+		// if no any child, create children Linked List
 		if (children == null)
-		{
 			children = new LinkedList<node>();
+		// if no the child in the Linked List, add it
+		if (!existTheChild(ch))
 			children.add(new node(ch));
-		}
-		else
-			if (!existChild(ch))
-				children.add(new node(ch));
 	}
 
 	protected node nextChild(node obj, char ch)
@@ -123,15 +117,13 @@ class node
 
 // 	public node(char ch) { key = ch; }
 
-// 	protected char getKey() { return key; }
-
 // 	protected boolean getStatus() { return status; }
 
 // 	protected LinkedList<node> getChildren() { return children; }
 
 // 	protected void modifyStatus() { status = !status; }
 
-// 	protected boolean existChild(char ch)
+// 	protected boolean existTheChild(char ch)
 // 	{
 // 		for (node n : children)
 // 			if (n.key == ch)
@@ -147,7 +139,7 @@ class node
 // 			children.add(new node(ch));
 // 		}
 // 		else
-// 			if (!existChild(ch))
+// 			if (!existTheChild(ch))
 // 				children.add(new node(ch));
 // 	}
 
