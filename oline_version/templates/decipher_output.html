@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    output
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('decipher') }}" method="GET">
+        <fieldset>
+            <div>
+                <p>cipher text = {{cipher}}</p>
+            </div>
+            <div>
+                <p>decipher text = {{decipher}}</p>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

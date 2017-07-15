@@ -1,0 +1,5 @@
+Smith's GPA:2.34
+Davis's GPA:2.6
+Tom's GPA:3.2
+Tim's GPA:2.2
+Baker's GPA:2.6

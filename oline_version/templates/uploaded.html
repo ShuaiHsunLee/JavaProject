@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Uploaded
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('upload_file') }}" method="post">
+        <fieldset>
+            
+            <div>
+                <p>File Name = {{filename}}</p>
+            </div>
+
+        </fieldset>
+    </form>
+{% endblock %}
