@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cipher
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('index') }}" method="post">
+        <fieldset>
+            
+            <div>
+                <a href="http://192.168.0.11:5000/upload_file" class="button">Upload file</a>
+            </div>
+            
+            <div>
+                <a href="http://192.168.0.11:5000/project1" class="button">Go to cipher</a>
+            </div>
+            
+            <div>
+                <a href="http://192.168.0.11:5000/project2" class="button">Go to decipher</a>
+            </div>
+            
+        </fieldset>
+    </form>
+{% endblock %}

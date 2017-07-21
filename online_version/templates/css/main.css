@@ -1,0 +1,104 @@
+.section { text-align: center; font: 50px "Arial"; color: #fff;}
+
+.section2 p { position: relative; left: -120%;}
+
+.section3 p { position: relative; bottom: -120%;}
+
+.section4 p { display: none;}
+
+h4 {
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    text-align: left;
+    font-size:30px;
+}
+h5 {
+    position: absolute;
+    left:10%;
+    top: 20%;
+    text-align: left;
+    font-size: 20px;
+}
+h5 li {
+    line-height: 30px;
+}
+.input1 {
+    display: none;
+}
+h6 {
+    position: relative;
+    margin: auto;
+    margin-top: 10%;
+    padding: 40px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 2px #fff solid;
+    border-radius: 100%;
+    background: #128c65;
+    font-size: 30px;
+    line-height: 100px;
+    transition: 1s ease;
+}
+h6:hover {
+    background: #fff;
+    color: #128c65;
+}
+button {
+    background: #3cb757;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px !important;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+button:hover {
+    background: #17c13c;
+}
+button:active {
+    font-size: 15px !important;
+    padding: 8px 23px;
+}
+
+.subbox {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto;
+    margin: 20px 0 0;
+    padding: 0;
+    
+}
+.subbox .line {
+    position: relative;
+    width: 240px;
+    height: 200px;
+    margin: auto;
+    padding: 20px 0;
+    border: 5px #fff solid;
+    border-radius: 8px;
+}
+.subbox h8 {
+    display: block;
+    position: relative;
+    margin: auto;
+}
+.subbox input {
+    display: block;
+    position: relative;
+    margin: 10px auto;
+    padding: 5px 0;
+    font-size: 18px;
+    outline-color: orange;
+    border: 0;
+    border-radius: 8px;
+}
+.buttonbox {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}

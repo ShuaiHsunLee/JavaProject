@@ -1,0 +1,123 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Java Project</title>
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- <%--<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>--%> -->
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.fn.fullpage({
+                slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90', '#ef820'],
+                anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],
+                afterLoad: function (anchorLink, index) {
+                    if (index == 2) {
+                        $('.section2').find('p').delay(500).animate({
+                            left: '0'
+                        }, 1500, 'easeOutExpo');
+                    }
+                    if (index == 3) {
+                        $('.section3').find('p').delay(500).animate({
+                            bottom: '0'
+                        }, 1500, 'easeOutExpo');
+                    }
+                    if (index == 4) {
+                        $('.section4').find('p').fadeIn(2000);
+                    }
+                },
+                onLeave: function (index, direction) {
+                    if (index == '2') {
+                        $('.section2').find('p').delay(500).animate({
+                            left: '-120%'
+                        }, 1500, 'easeOutExpo');
+                    }
+                    if (index == '3') {
+                        $('.section3').find('p').delay(500).animate({
+                            bottom: '-120%'
+                        }, 1500, 'easeOutExpo');
+                    }
+                    if (index == '4') {
+                        $('.section4').find('p').fadeOut(2000);
+                    }
+                }
+            });
+        });
+    </script>
+  </head>
+  <body>
+  <!-- <%--<form id="uploadForm" enctype="multipart/form-data">--%>
+    <%--<input id="file" type="file" name="file"/>--%>
+    <%--<button id="upload" type="button" onclick="getFile()">upload</button>--%>
+  <%--</form>--%> -->
+  <div class="section section1">
+    <h3>Group Project</h3>
+    <p>Names</p>
+  </div>
+
+  <div class="section section2">
+    <h4>GPA calculator</h4>
+    <h5>
+      <ul>
+        <li>Calculate the GPA of 6 students from a file</li>
+        <li>Output the GPA to another file</li>
+      </ul>
+    </h5>
+    <div class="projectBox">
+      <label id="inputFile" for="file" class="inputBox">
+        <input class="input1" type="file" name="file" id="file">
+        <h6>select</h6>
+      </label>
+      <!-- <button type="button">Submit</button> -->
+    </div>
+  </div>
+
+  <div class="section section3">
+    <h4>Caesar Cipher & Decipher</h4>
+    <h5>
+      <ul>
+        <li>Reads a message from user</li>
+        <li>Performs a Caesar cipher on its letters with a shift that user wants</li>
+      </ul>
+    </h5>
+    <div class="projectBox">
+      <div class="subbox">
+        <div class="line">
+          <h8>Cipher</h8>
+          <div class="inputbox">
+            <input class="input2" type="text" id="input2">
+            <input class="input2" type="number" name="file2" id="input3" maxlength="100">
+            <div class="buttonbox">
+              <button type="button">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subbox">
+        <div class="line">
+          <h8>Decipher</h8>
+          <label id="inputFile3" for="file2" class="inputBox">
+            <input class="input2" type="text" id="input2">
+            <div class="buttonbox">
+              <button type="button">Submit</button>
+            </div>
+          </label>
+        </div>
+      </div>
+      <!-- <button type="button">Submit</button> -->
+    </div>
+  </div>
+
+  <div class="section section4">
+    <h3>Page four</h3>
+    <p>Function four</p>
+  </div>
+
+
+  <!-- <%--<script type="text/javascript" src="js/main.js"></script>--%> -->
+  <!-- <%--<h3 id="message"><%=project1.getMessage()%></h3>--%> -->
+  </body>
+</html>
