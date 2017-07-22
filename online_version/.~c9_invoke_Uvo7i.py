@@ -107,8 +107,8 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             
-            if filename != "Grades_in.txt":
-                return send_from_directory(directory='uploads', filename='Error.txt', as_attachment=True)
+            if filename != "Grades_in.txt" or filename :
+                return send_from_directory(directory='uploads', filename='error.txt', as_attachment=True)
                 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             subprocess.call(['make', 'compile'])

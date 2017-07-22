@@ -1,0 +1,41 @@
+Tom
+IT 508 Information Technology Management:A;
+IT 509 Data Management:B;
+IT 512 Project Management:B+;
+IT 513 Information Security:A-;
+IT 515 Organizational Behavior:C;
+-------------------------------------------
+Tim
+IT 508 Information Technology Management:B;
+IT 509 Data Management:C;
+IT 512 Project Management:D+;
+IT 513 Information Security:B-;
+IT 515 Organizational Behavior:C;
+-------------------------------------------
+Smith
+IT 508 Information Technology Management:B;
+IT 509 Data Management:D-;
+IT 512 Project Management:B;
+IT 513 Information Security:A-;
+IT 515 Organizational Behavior:D+;
+-------------------------------------------
+Davis
+IT 508 Information Technology Management:B;
+IT 509 Data Management:B;
+IT 512 Project Management:C+;
+IT 513 Information Security:D-;
+IT 515 Organizational Behavior:A;
+-------------------------------------------
+Baker
+IT 508 Information Technology Management:C;
+IT 509 Data Management:B-;
+IT 512 Project Management:B+;
+IT 513 Information Security:B-;
+IT 515 Organizational Behavior:C+;
+-------------------------------------------
+Victor
+IT 508 Information Technology Management:A;
+IT 509 Data Management:A;
+IT 512 Project Management:A;
+IT 513 Information Security:A;
+IT 515 Organizational Behavior:A;

@@ -3,19 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Java Project</title>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/normalize.css') }}>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/demo.css') }}>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
 
     <!--必要样式-->
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/component.css') }}>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/jquery.fullPage.css') }}>
-    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/main.css') }}>
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <!-- <%--<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>--%> -->
-    <script src={{ url_for('static', filename='js/jquery-1.8.3.min.js') }}></script>
-    <script src={{ url_for('static', filename='js/jquery-ui-1.10.3.min.js') }}></script>
-    <script src={{ url_for('static', filename='js/jquery.fullPage.min.js') }}></script>
-
-        <script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery-ui-1.10.3.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+    <script>
         $(document).ready(function () {
             $.fn.fullpage({
                 slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90', '#4fdc3c', '#c559ff'],
@@ -24,7 +23,7 @@
         });
     </script>
   </head>
-    <body>
+  <body>
 
   <!-- section one -->
   <div class="section section1">
@@ -92,8 +91,8 @@
             <!-- cipherx -->
             <form action="/" method="post" id="cipher_id">
               <div class="inputbox">
-                <input type="text" id="enterText1" placeholder="Cipher text" name="sentence">
-                <input type="number" id="interNumber" value="1" maxlength="100" name="shift">
+                <input type="text" id="enterText1" placeholder="Cipher text">
+                <input type="number" id="interNumber" value="1" maxlength="100">
                 <div class="buttonbox">
                   <button type="button" onclick="cipherPost()">Submit</button>
                 </div>
@@ -108,9 +107,9 @@
             <!-- decipherx -->
             <form action="/" method="post" id="decipher_id">
               <div class="inputbox">
-                <input type="text" id="enterText2" placeholder="Decipher text" name="sentence">
+                <input type="text" id="enterText2" placeholder="Decipher text">
                 <div class="buttonbox">
-                  <button type="button" onclick="decipherPost()">Submit</button>
+                  <button type="button" onclick="DecipherPost()">Submit</button>
                 </div>
               </div>
             </form>
@@ -171,10 +170,10 @@
     }
   </script>
 
-  <script src={{ url_for('static', filename='js/TweenLite.min.js') }}></script>
-  <script src={{ url_for('static', filename='js/EasePack.min.js') }}></script>
-  <script src={{ url_for('static', filename='js/rAF.js') }}></script>
-  <script src={{ url_for('static', filename='js/demo-3.js') }}></script>
+  <script src="js/TweenLite.min.js"></script>
+  <script src="js/EasePack.min.js"></script>
+  <script src="js/rAF.js"></script>
+  <script src="js/demo-3.js"></script>
 
   <!-- <%--<script type="text/javascript" src="js/main.js"></script>--%> -->
   <!-- <%--<h3 id="message"><%=project1.getMessage()%></h3>--%> -->

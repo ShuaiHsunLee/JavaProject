@@ -1,0 +1,137 @@
+.section { text-align: center; font: 50px "Arial"; color: #fff;}
+
+.wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h4 {
+    position: relative;
+    margin: 20px 30px;
+    text-align: left;
+    font-size:30px;
+}
+h5 {
+    position: relative;
+    margin: 20px 30px;
+    text-align: left;
+    font-size: 20px;
+}
+h5 li {
+    line-height: 30px;
+}
+.input1 {
+    display: none;
+}
+h6 {
+    position: relative;
+    margin: auto;
+    margin-top: 40px;
+    padding: 0;
+    width: 4em;
+    height: 4em;
+    cursor: pointer;
+    border: 4px #fff solid;
+    border-radius: 100%;
+    background: #128c65;
+    font-size: 1em;
+    line-height: 4em;
+    transition: 1s ease;
+}
+h6:hover {
+    background: #fff;
+    color: #128c65;
+}
+button {
+    background: #3cb757;
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px !important;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+button:hover {
+    background: #17c13c;
+}
+button:active {
+    font-size: 15px !important;
+    padding: 8px 23px;
+}
+
+/* box related*/
+.projectBox {
+    position: relative;
+    padding: 0 15%;
+}
+.subbox {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: auto;
+    margin: 20px 0 0;
+    padding: 0;
+    
+}
+.subbox .line {
+    position: relative;
+    width: 240px;
+    height: 250px;
+    margin: auto;
+    padding: 20px 0;
+    border: 5px #333 solid;
+    border-radius: 16px;
+    background-color: #fff;
+    color: #666;
+}
+.subbox h8 {
+    display: block;
+    position: relative;
+    margin: auto;
+}
+.subbox input {
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: 10px auto;
+    padding: 5px 8px;
+    font-size: 18px;
+    outline-color: orange;
+    border: 1px solid #999;
+    border-radius: 8px;
+}
+.buttonbox {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
+
+#thanks {
+    position: relative;
+    font-family: 'Clicker Script', cursive;
+    font-size: 2em;
+    color: #fff;
+    font-weight: bolder;
+    animation-name: thank;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes thank {
+    0% {
+        color: #c559ff;
+        font-size: 2em;
+    }
+    50% {
+        color: #333;
+        font-size: 3.5em;
+    }
+    100% {
+        color: #c559ff;
+        font-size: 2em;
+    }
+}
