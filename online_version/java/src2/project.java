@@ -25,6 +25,18 @@ public class project
 			PrintWriter writer2 = new PrintWriter("./java/text/decipher.txt", "UTF-8");
             writer2.println(result);
             writer2.close();
+			
+			// /* decipher */
+			// decipher unknown = new decipher();
+			// LinkedList<String> result = unknown.findBest(input);
+
+			// PrintWriter write = new PrintWriter("./java/text/decipher.txt", "UTF-8");
+			// write.write("[\"");
+			// for (String str : result)
+			// 	write.write(str + "\",\"");
+			// write.write("\"");
+			// write.write("]");
+			// write.close();
 		}
 		catch (IOException e) {}
 	}

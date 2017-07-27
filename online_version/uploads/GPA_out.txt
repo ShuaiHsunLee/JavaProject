@@ -1,6 +1,12 @@
 Victor's GPA:4
+
 Tom's GPA:3.2
+
 Baker's GPA:2.6
+
 Smith's GPA:2.34
+
 Tim's GPA:2.2
+
 Davis's GPA:2.6
+

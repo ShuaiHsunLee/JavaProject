@@ -135,3 +135,153 @@ button:active {
         font-size: 2em;
     }
 }
+
+.halfbox {
+    display: table-cell;
+    position: relative;
+    width: 50%;
+    left: 0;
+    top: 20%;
+    height: 500px;
+}
+.halfbox ul,
+.textBox ul {
+    font-size: 24px;
+    text-align: left;
+    line-height: 35px;
+}
+.halfbox li,
+.textBox li {
+    margin: 15px 0;
+}
+.textBox {
+    display: table-cell;
+    position: relative;
+    width: 40%;
+    left: 0;
+    vertical-align: middle;
+    height: 500px;
+    padding-right: 8px;
+}
+.sourceCode {
+    position: absolute;
+    right: 0;
+    width: 60%;
+    font-size: 12px;
+    height: 500px;
+}
+.sourceCode .syntaxhighlighter {
+    padding: 8px !important;
+    border: 1px solid #1b2426 !important;
+    border-radius: 10px;
+    text-align: left;
+    height: 100% !important;
+    overflow: scroll;
+    white-space: pre-wrap;
+}
+
+::-webkit-scrollbar { 
+    border-radius: 20px; 
+    width: 8px;
+    height: auto;
+}
+::-webkit-scrollbar-corner {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255,255,255,.2);
+    border-radius: 40px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255,255,255,.6);
+}
+
+.slide {
+    color: #333;
+}
+.slide .wrapper {
+    display: table;
+    width: 100%;
+}
+.slide h1 {
+    font-size: 1em;
+}
+.slide p {
+    font-size: .8em;
+}
+.sourceCode img {
+    display: block;
+    width: 100%;
+}
+
+.firstbox {
+    display: block;
+    position: relative;
+    width: 50%;
+    float: left;
+    min-height: 500px;
+}
+.firstbox img {
+    display: block;
+    width: 100%;
+}
+
+#popout {
+    display: table;
+    position: fixed;
+    top: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    background-color: rgba(0,0,0,.3);
+    transition: 1s ease;
+    opacity: 0;
+    z-index: -100;
+}
+#popout.show {
+    opacity: 1;
+    z-index: 999;
+}
+#popout .pbox {
+    display: table-cell;
+    vertical-align: middle;
+}
+#popout .pback {
+    position: relative;
+    width: 300px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 20px;
+    color: #333;
+}
+#popout .ptitle {
+    font-size: 18px;
+    line-height: 18px;
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #999;
+}
+#popout .pbody {
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #999;
+}
+#popout button {
+    display: block;
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+}
+#popout button:active {
+    font-size: 20px !important;
+    padding: 10px 25px;
+}
+#popout .pbody p {
+    word-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+}

@@ -5,6 +5,8 @@
     <title>Java Project</title>
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/normalize.css') }}>
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/demo.css') }}>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/shCore.css') }}>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/shThemeRDark.css') }}>
 
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/component.css') }}>
@@ -15,12 +17,20 @@
     <script src={{ url_for('static', filename='js/jquery-ui-1.10.3.min.js') }}></script>
     <script src={{ url_for('static', filename='js/jquery.fullPage.min.js') }}></script>
 
-        <script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/shCore.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='js/shBrushJava.js') }}"></script>
+    <!-- <script type=text/javascript src="{{url_for('static', filename='jquery.js') }}"></script> -->
+    <!-- <script type="text/javascript" src="js/shCore.js"></script> -->
+    <!-- <script type="text/javascript" src="js/shBrushJava.js"></script> -->
+
+    <script>
         $(document).ready(function () {
             $.fn.fullpage({
-                slidesColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90', '#4fdc3c', '#c559ff'],
+                slidesColor: ['#1bbc9b', '#4BBFC3', '#fff', '#f90', '#fff', '#c559ff'],
                 anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
             });
+
+            SyntaxHighlighter.all();
         });
     </script>
   </head>
@@ -64,14 +74,257 @@
   <!-- section three -->
   <div class="section section3">
     <div class="slide">
-      <h1>Slide one</h1>
-      <p>Hello world</p>
+      <div class="wrapper">
+        <div class="firstbox">
+          <h1>Methods & Brief Introduction</h1>
+          <img src="/static/img/p11.png">
+        </div>
+        <div class="firstbox">
+          <img src="/static/img/p12.png" style="position: absolute;bottom: 0;">
+        </div>
+      </div>
     </div>
     <div class="slide">
-      <h1>Slide two</h1>
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Import, Flieds & main method</h1>
+          <ul>
+            <li>Import packages and declare flieds</li>
+            <li>Get file Path</li>
+            <li>Call input method</li>
+          </ul>
+        </div>
+        <div class="sourceCode">
+          <pre class="brush:java;toolbar:false">
+            package chapter13;
+            import java.nio.file.*;
+            import java.io.*;
+            import static java.nio.file.StandardOpenOption.*;
+            import java.util.ArrayList;
+            import java.util.List;
+
+            public class project1 {
+              private String stuName;
+              private float stuGPA;
+              project1(String n, float gpa) {
+                stuName = n;
+                stuGPA = gpa;
+              }
+              public String getName() {
+                return this.stuName;
+              }
+              public float getGpa() {
+                return this.stuGPA;
+              }
+              public void setName(String name) {
+                this.stuName = name;
+              }
+              public void setGpa(float gpa) {
+                this.stuGPA = gpa;
+              }
+              
+              public static void main(String[] args) {
+                Path file = Paths.get("C:\\Users\\Leo\\Desktop\\CLU_Files\\IT501\\Group project\\Grades_in.txt");
+                project1.input(file);
+              }
+            }
+          </pre>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
     </div>
     <div class="slide">
-      <h1>Slide three</h1>
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>input method</h1>
+          <ul>
+            <li>Parameter of Path</li>
+            <li>Using the InputStream to reading data from the file</li>
+            <li>Using the delimiter("-------------------------------------------") to split each student's information, and save them in an array</li>
+            <li>String list for storing students' name and GPA text</li>
+          </ul>
+        </div>
+        <div class="sourceCode">
+          <pre class="brush:java;toolbar:false">
+            public static void input(Path filePath) {
+              InputStream input = null;
+              String s = "";
+              String delimiter = "-------------------------------------------";
+              String[] array;
+              String whole = "";
+              try {
+                input = Files.newInputStream(filePath);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                s = reader.readLine();
+                while(s != null) {
+                  whole = whole + s;
+                  if(!(s.equals(delimiter))) {
+                    whole = whole + System.getProperty("line.separator");
+                  }
+                  s = reader.readLine();
+                }
+                reader.close();
+                array = whole.split(delimiter);
+                List&ltproject1> stuGroup = new ArrayList&ltproject1>();
+                for(int i=0; i&ltarray.length; i++) {
+                  stuGroup.add(project1.getName(array[i]));
+                }
+                project1.output(stuGroup);
+              } catch(IOException e) {
+                System.out.println(e);
+              }
+            }
+          </pre>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>getName method</h1>
+          <ul>
+            <li>Parameter of String</li>
+            <li>Split one student's information to an array the first element of the array is student's name</li>
+            <li>Create an object of student information and return it</li>
+          </ul>
+        </div>
+        <div class="sourceCode">
+          <pre class="brush:java;toolbar:false">
+            public static project1 getName(String str) {
+              String[] subArray;
+              String spliter = "\\r?\\n";
+              subArray = str.split(spliter);
+              float gpa = (float)project1.calculateGPA(subArray);
+              project1 stu = new project1(subArray[0], gpa);
+              return stu;
+            }
+          </pre>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>calculateGPA method</h1>
+          <ul>
+            <li>Parameter of String</li>
+            <li>Calculate one student’s GPA and return it</li>
+            <li>Looping array and using indexOf() method to calculate sum grade</li>
+          </ul>
+        </div>
+        <div class="sourceCode">
+          <pre class="brush:java;toolbar:false">
+            public static double calculateGPA(String[] sa) {
+              int begin;
+              int end;
+              double gpa = 0;
+              double allGrades = 0;
+              int subjects = 0;
+              for(int i=0; i&ltsa.length; i++) {
+                begin = sa[i].indexOf(":");
+                end = sa[i].indexOf(";");
+                if(begin != -1) {
+                  subjects ++;
+                  String grade = sa[i].substring(begin+1, end);
+                  switch(grade) {
+                  case "A" :
+                    allGrades += 4.0;
+                    break;
+                  case "A-" :
+                    allGrades += 3.7;
+                    break;
+                  case "B+" :
+                    allGrades += 3.3;
+                    break;
+                  case "B" :
+                    allGrades += 3.0;
+                    break;
+                  case "B-" :
+                    allGrades += 2.7;
+                    break;
+                  case "C+" :
+                    allGrades += 2.3;
+                    break;
+                  case "C" :
+                    allGrades += 2.0;
+                    break;
+                  case "C-" :
+                    allGrades += 1.7;
+                    break;
+                  case "D+" :
+                    allGrades += 1.3;
+                    break;
+                  case "D" :
+                    allGrades += 1.0;
+                    break;
+                  case "D-" :
+                    allGrades += 0.7;
+                    break;
+                  }
+                }
+              }
+              gpa = allGrades/subjects;
+              return gpa;
+            }
+          </pre>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>output method</h1>
+          <ul>
+            <li>Parameter of List&ltproject1></li>
+            <li>Using outputStream to output all information from the project1 list</li>
+            <li>Create text lines and write it</li>
+          </ul>
+        </div>
+        <div class="sourceCode">
+          <pre class="brush:java;toolbar:false">
+            public static void output(List&ltproject1> stu) {
+              Path filePath = Paths.get("C:\\Users\\Leo\\Desktop\\CLU_Files\\IT501\\Group project\\GPA_out.txt");
+              OutputStream out = null;
+              try {
+                out = new BufferedOutputStream(Files.newOutputStream(filePath, CREATE));
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out));
+                for(int i=0; i&ltstu.size(); i++) {
+                  String text = stu.get(i).getName() + "'s GPA: " + stu.get(i).getGpa();
+                  writer.write(text, 0, text.length());
+                  writer.newLine();
+                  writer.newLine();
+                }
+                writer.close();
+                
+              } catch (IOException e) {
+                System.out.println("Message: "+ e);
+              }
+            }
+          </pre>
+        </div>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="halfbox">
+          <h1>Advantage</h1>
+          <ul>
+            <li>Clear structure of split students’ information from individual student to the information inside every student</li>
+            <li>Will not be influenced when students’ name or number be changed, or courses number be changed</li>
+          </ul>
+        </div>
+        <div class="halfbox">
+          <h1>Disadvantage</h1>
+          <ul>
+            <li>Limitation of the format on the “Grades_in.txt”, such as the delimiter</li>
+            <li>Using mapping instead of switch could promoted code efficiency</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -124,14 +377,310 @@
   <!-- section five -->
   <div class="section section5">
     <div class="slide">
-      <h1>Slide one</h1>
-      <p>Hello world</p>
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>flow chart</p>
+        </div>
+        <div class="sourceCode">
+          <img src="/static/img/p21.png">
+        </div>
+      </div>
     </div>
     <div class="slide">
-      <h1>Slide two</h1>
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(encrypt)</p>
+        </div>
+        <div class="sourceCode">
+        <pre class="brush: java; toolbar: false">
+          import java.util.Scanner;
+
+          public class project2
+          {
+            public static void main(String[] args)
+            {
+              Scanner sc = new Scanner(System.in);
+              System.out.println("input message: ");
+
+              String input = sc.nextLine();
+              System.out.println("input shift number: ");
+              int shift = sc.nextInt();
+
+              cipher sentence = new cipher();
+              String output = sentence.sentenceShift(input, shift);
+
+              System.out.println("Input : " + input);
+              System.out.println("Cipher: " + output);
+            }
+          }
+
+          class cipher
+          {
+            private char[] chArray;
+
+            public cipher() {}
+
+            public char charShift(char ch, int shift)
+            {
+              shift %= 26;
+              if (shift < 0)
+                shift += 26;
+
+              int asci = (int)ch;
+
+              if (65<=asci && asci<=90)
+              {
+                asci += shift;
+                if (asci > 90) 
+                  asci -= 26; // asci = 64 + (asci - 90)
+              }
+              else if (97<=asci && asci<=122)
+              {
+                asci += shift;
+                if (asci >122)
+                  asci -= 26; // asci = 96 + (asci - 122)
+              }
+              return (char)asci;
+            }
+
+            public String sentenceShift(String str, int shift)
+            {
+              chArray = str.toCharArray();
+
+              for (int i=0; i&ltchArray.length; i++)
+                chArray[i] = charShift(chArray[i], shift);
+
+              return String.valueOf(chArray);
+            }
+          }
+        </pre>
+        </div>
+      </div>
     </div>
     <div class="slide">
-      <h1>Slide three</h1>
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(dictionary)</p>
+        </div>
+        <div class="sourceCode">
+          <img src="/static/img/p22.png">
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(dictionary)</p>
+        </div>
+        <div class="sourceCode">
+          <img src="/static/img/p23.png">
+        </div>
+      </div>
+    </div>
+    <!-- decipher start -->
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(dictionary)</p>
+        </div>
+        <div class="sourceCode">
+        <pre class="brush: java; toolbar: false">
+          package MyPackage;
+          import java.util.LinkedList;
+
+          public class dictionary extends node
+          {
+            private node root = new node();
+
+            public dictionary() {}
+
+            public void insertWord(String str)
+            {
+              node tmp = root;
+              for (char ch : str.toCharArray())
+              {
+                tmp.addChild(ch);
+                tmp = tmp.nextChild(tmp, ch);
+              }
+              // avoid problem of that same word insert more than once
+              if (tmp.getStatus() == false)
+                tmp.modifyStatus();
+            }
+
+            public boolean isWord(String str)
+            {
+              node tmp = root;
+              for (char ch : str.toCharArray())
+              {
+                // turn upper case into lower case 
+                if (65<=ch && ch<=90)
+                  ch += 32;
+                // check if every char of a word in dictionary
+                // if there is no child in node, no need to check
+                if (tmp.getChildren() == null)
+                  return false;
+                if (!tmp.existTheChild(ch))
+                  return false;
+                tmp = tmp.nextChild(tmp, ch);
+              }
+              return tmp.getStatus();
+            }
+          }
+
+          class node
+          {
+            private char key;
+            private boolean status = false;
+            private LinkedList&ltnode> children = null;
+
+            public node() {}
+
+            public node(char ch) { key = ch; }
+
+            protected boolean getStatus() { return status; }
+
+            protected LinkedList&ltnode> getChildren() { return children; }
+
+            protected void modifyStatus() { status = !status; }
+
+            protected boolean existTheChild(char ch)
+            {
+              for (node n : children)
+                if (n.key == ch)
+                  return true;
+              return false;
+            }
+
+            protected void addChild(char ch)
+            {
+              if (children == null)
+              {
+                children = new LinkedList&ltnode>();
+                children.add(new node(ch));
+              }
+              else
+                if (!existTheChild(ch))
+                  children.add(new node(ch));
+            }
+
+            protected node nextChild(node obj, char ch)
+            {
+              for (node n : obj.children)
+                if (n.key == ch)
+                  return n;
+              return null;
+            }
+          }
+        </pre>
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(decipher)</p>
+        </div>
+        <div class="sourceCode">
+          <img src="/static/img/p24.png">
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="textBox">
+          <h1>Caesar cipher</h1>
+          <p>Detail(decipher)</p>
+        </div>
+        <div class="sourceCode">
+        <pre class="brush: java; toolbar: false">
+          package MyPackage;
+          import java.util.LinkedList;
+          import java.util.HashMap;
+          import java.io.BufferedReader;
+          import java.io.FileReader;
+          import java.io.IOException;
+
+          public class decipher extends cipher
+          {
+            static final dictionary dict = new dictionary();
+            private static boolean alreadyExecuted = false;
+            private LinkedList&ltString> lst = new LinkedList&ltString>();
+            private HashMap&ltString, Integer> hmap = new HashMap&ltString, Integer>();
+
+            public decipher () {}
+
+            private static void checkDictionaryInit()
+            {
+              if (!alreadyExecuted)
+              {
+                dictionaryInit();
+                alreadyExecuted = true;
+              }
+            }
+
+            private static void dictionaryInit()
+            {
+              /* put words into dictionary */
+              try (BufferedReader br = new BufferedReader(new FileReader("../dictionary/vocabulary"))) 
+              {
+                  String line;
+                  while ((line = br.readLine()) != null)
+                    dict.insertWord(line);
+              } catch(IOException ioe){}
+            }
+
+            public void cipherCorrection(String str, int i)
+            {
+              int counter = 0;
+              String tmp = sentenceShift(str, i);
+              String[] words = tmp.split(" ");
+              for (String word : words)
+                if (dict.isWord(word))
+                  counter++;
+              hmap.put(tmp, counter);
+            }
+
+            public LinkedList&ltString> findBest(String str)
+            {
+              checkDictionaryInit();
+              for (int i=0; i&lt26; i++)
+                cipherCorrection(str, i);
+              // find the smallest value
+              int counter = 0;
+              for ( String key : hmap.keySet() )
+                if (hmap.get(key) > counter)
+                  counter = hmap.get(key);
+              for ( String key : hmap.keySet() )
+                if (hmap.get(key) == counter)
+                  lst.add(key);
+              return lst;
+            }
+          }
+        </pre>
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="wrapper">
+        <div class="halfbox">
+          <h1>Advantage</h1>
+          <ul>
+            <li>Our Caesar cipher program can shift any bit as user wants</li>
+          </ul>
+        </div>
+        <div class="halfbox">
+          <h1>Disadvantage</h1>
+          <ul>
+            <li>Our Caesar cipher program can’t decrypt meaningless text</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -140,6 +689,21 @@
     <div id="thanks">THANK YOU!</div>
   </div>
 
+  <!-- pop out -->
+  <div id="popout">
+    <div class="pbox">
+    <div class="pback">
+      <div class="ptitle">
+        Info box
+      </div>
+      <div class="pbody">
+        <p>Congrates!</p >
+      </div>
+      <button onclick="$('#popout').removeClass('show')">OK</button>
+    </div>
+  </div>
+
+  
   <script type="text/javascript">
     function cipherPost() {
       $.ajax({
@@ -148,7 +712,16 @@
         url: "/cipher",
         success: function(data)
         {   
-            alert(data);
+          var json = JSON.parse(data);
+          if(json.result == "0000") {
+            $("#popout .ptitle").text("Congrates!");
+            $("#popout .pbody p").text("The result: " + json.cipher);
+          } else {
+            $("#popout .ptitle").text("Oops...");
+            $("#popout .pbody p").text(json);
+          }
+          console.log(json);
+          $("#popout").addClass("show");
         }
       });
     }
@@ -159,17 +732,29 @@
         url: "/decipher",
         success: function(data)
         {   
-            alert(data);
+          var json = JSON.parse(data);
+          if(json.result == "0000") {
+            $("#popout .ptitle").text("Congrates!");
+            $("#popout .pbody p").text("The result: " + json.decipher);
+          } else {
+            $("#popout .ptitle").text("Oops...");
+            $("#popout .pbody p").text(json);
+          }
+          $("#popout").addClass("show");
         }
       });
     }
     function uploadFile() {
       $("#upload_id").submit(function(e){
-        alert(e);
+        // alert(e);
       });
       $("#upload_id").submit();
     }
+
+    // $(".sourceCode pre").snippet("java", { style: "blacknblue", collapse: false, startCollapsed: false, menu: false});
   </script>
+
+
 
   <script src={{ url_for('static', filename='js/TweenLite.min.js') }}></script>
   <script src={{ url_for('static', filename='js/EasePack.min.js') }}></script>

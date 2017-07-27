@@ -44,7 +44,7 @@ class gpa
 		}
 		catch (ArrayIndexOutOfBoundsException e)
 		{
-			formatError("Formate Error 1");
+			formatError("Format Error 1");
 		}
 		return "error";
 	}
@@ -52,7 +52,7 @@ class gpa
 	{
 		try{
 			/* WRITE */
-			PrintWriter writer = new PrintWriter("uploads/Grades_out.txt", "UTF-8");
+			PrintWriter writer = new PrintWriter("uploads/GPA_out.txt", "UTF-8");
 			writer.write(output);
 			writer.close();
 			System.exit(0);
@@ -102,9 +102,9 @@ class gpa
 		    df.setMaximumFractionDigits(2);
 
 			/* WRITE */
-			PrintWriter writer1 = new PrintWriter("uploads/Grades_out.txt", "UTF-8");
+			PrintWriter writer1 = new PrintWriter("uploads/GPA_out.txt", "UTF-8");
 			for (String key : people.keySet())
-				writer1.write(key + "\'s GPA:" + df.format(people.get(key)) + "\r\n");
+				writer1.write(key + "\'s GPA:" + df.format(people.get(key)) + "\r\n\r\n");
 			writer1.close();
 		}
 		catch (IOException e) {}

@@ -10,7 +10,8 @@ UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = set(['txt'])
 
 # configure application
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # ensure responses aren't cached
@@ -52,7 +53,7 @@ def decipher():
         decipher_file = open("./java/text/decipher.txt", "r")
         decipher_result = decipher_file.read().strip('\n')
         decipher_file.close
-        return json.dumps({"result":"0000", "cipher" : cipher_result, "decipher" : decipher_result})
+        return json.dumps({"result" : "0000", "cipher" : cipher_result, "decipher" : decipher_result})
 
 @app.route("/cipher", methods=["GET", "POST"])
 def cipher():
@@ -85,7 +86,7 @@ def cipher():
         cipher_file = open("./java/text/cipher.txt", "r")
         cipher_result = cipher_file.read().strip('\n')
         cipher_file.close()
-        return json.dumps({"result":"0000", "origin" : origin_result, "cipher" : cipher_result, "shift" : integer})
+        return json.dumps({"result" : "0000", "origin" : origin_result, "cipher" : cipher_result, "shift" : integer})
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -113,7 +114,7 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             subprocess.call(['make', 'compile'])
             subprocess.call(['make', 'run'])
-            return send_from_directory(directory='uploads', filename='Grades_out.txt', as_attachment=True)
+            return send_from_directory(directory='uploads', filename='GPA_out.txt', as_attachment=True)
 
 def apology(top="", bottom=""):
     """Renders message as an apology to user."""
